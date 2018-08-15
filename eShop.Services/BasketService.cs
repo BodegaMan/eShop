@@ -63,7 +63,7 @@ namespace eShop.Services
             HttpCookie cookie = new HttpCookie(BasketSessionName);
             cookie.Value = basket.Id;
             cookie.Expires = DateTime.Now.AddDays(1);
-            httpContext.Request.Cookies.Add(cookie);
+            httpContext.Response.Cookies.Add(cookie);
 
             return basket;
 
@@ -110,6 +110,7 @@ namespace eShop.Services
                               on b.ProductId equals p.Id
                               select new BasketItemViewModel()
                                 { Id = b.Id,
+                                  ProductName = p.Name, 
                                   Quantity = b.Quantity,
                                   Image = p.Image,
                                   Price = p.Price }
